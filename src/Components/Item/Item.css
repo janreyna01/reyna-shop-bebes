@@ -1,0 +1,15 @@
+.card{
+    width: 100%;
+    border-radius: 10px;
+    background-color:#6efa93;
+    display: inline-flex; 
+    margin: 10px;
+    box-shadow: rgba(0, 0, 0, 0.295) 0px 0px 10px ;
+}
+.card-logo{
+    padding: 10px;
+    width: 130px;
+}
+.card-content{
+    color:rgb(18, 3, 83);
+}

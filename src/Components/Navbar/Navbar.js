@@ -1,20 +1,34 @@
 import Carwidget from '../CarWidget/Carwidget';
-import './Navbar.css'
+import './Navbar.css';
+import { Link } from "react-router-dom";
 
 function Navbar() {
+    const categorias = [
+        { nombre: "electronics", id: 0, ruta: "/categoria/electronics" },
+        { nombre: "jewelery", id: 1, ruta: "/categoria/jewelery" },
+        { nombre: "men's clothing", id: 2, ruta: "/categoria/men's clothing" },
+        { nombre: "women's clothing", id: 3, ruta: "/categoria/women's clothing" },
+    ];
+
     return (
         <nav className="barra">
-            <a href="www.google.com" className="div1">
-            <h1 className="titulo">Bebe Shops</h1> 
-            </a>
+            <Link to='/' className="div1">
+                <h1 className="titulo">Bebe Shops</h1>
+            </Link>
             <div className='lista'>
-                <a className="about" href="www.google.com">Ropa</a>
-                <a className="about" href="www.google.com">Juguetes</a>
-                <a className="about" href="www.google.com">Accesorios</a>
+                {categorias.map((categoria) => {
+                    return (
+                        <Link
+                            key={categoria.id}
+                            to={categoria.ruta}                        >
+                            {categoria.nombre}
+                        </Link>
+                    );
+                })}
             </div>
-            <Carwidget/>
+            <Carwidget />
         </nav>
     )
-  }
+}
 
-  export default Navbar;
+export default Navbar;

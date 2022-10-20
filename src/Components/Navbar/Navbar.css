@@ -16,9 +16,10 @@
 .about{
     font-size: 30px;
     margin: 10px;
-    
+    color: rgb(18, 3, 83);
 }
 
 .lista{
     display: flex; 
+    
 }
