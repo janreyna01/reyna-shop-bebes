@@ -4,10 +4,9 @@ import { Link } from "react-router-dom";
 
 function Navbar() {
     const categorias = [
-        { nombre: "electronics", id: 0, ruta: "/categoria/electronics" },
-        { nombre: "jewelery", id: 1, ruta: "/categoria/jewelery" },
-        { nombre: "men's clothing", id: 2, ruta: "/categoria/men's clothing" },
-        { nombre: "women's clothing", id: 3, ruta: "/categoria/women's clothing" },
+        { nombre: "Juguetes", id: 0, ruta: "/categoria/juguetes" },
+        { nombre: "Ropa", id: 1, ruta: "/categoria/ropa" },
+        { nombre: "Accesorios", id: 2, ruta: "/categoria/accesorios" },
     ];
 
     return (

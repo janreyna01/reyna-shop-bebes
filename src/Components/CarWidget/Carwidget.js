@@ -1,9 +1,19 @@
-import './Carwidget.css'
+import React, { useContext } from "react";
+import { Context } from "../Contex/CartContext";
+import { orange } from "@mui/material/colors";
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 
-function Carwidget() {
-    return (
-    <img className='carrito' src='./carrito.png' alt='Esto es una imagen'/>
-)
-}
+
+export const Carwidget = () => {
+  const { qty } = useContext(Context);
+
+  
+  return (
+    <>
+      <p>{qty}</p>
+      <ShoppingCartOutlinedIcon sx={{ color: orange[500] }} fontSize="large" />
+    </>
+  );
+};
 
 export default Carwidget;

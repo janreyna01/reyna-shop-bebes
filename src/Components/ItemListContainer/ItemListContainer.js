@@ -1,33 +1,60 @@
 import { useEffect, useState } from 'react';
 import ItemList from "../ItemList/ItemList";
 import { useParams } from "react-router-dom";
+import { db } from '../../Firebase/Firebase';
+import { getDocs, collection, query, where } from 'firebase/firestore';
 
 
 function ItemListContainer({ greeting }) {
-const [products, setProducts] = useState([]);
-const { id } = useParams();
+  const [products, setProducts] = useState([]);
 
-const URL_BASE = 'https://fakestoreapi.com/products'
-const URL_CAT = `${URL_BASE}/category/${id}`
+  const { category } = useParams();
+  //console.log(category);
 
-useEffect(() => {
-  fetch(id ? URL_CAT : URL_BASE)
-    .then((res) => res.json())
-    .then((json) => setProducts(json))
-    .catch((error) => {
-        console.log(error);
-      })
-      
-  }, [id, URL_BASE, URL_CAT]);
+
+  const productCollection = collection(db, "productos");
+  // const q = query(productCollection, where('category', '==', 'accesorios'))
+  let q
+  if (category === 'accesorios') {
+    q = query(productCollection, where('category', '==', 'ropa'));
     
-
-    return (
-        <>
-        <h1>{greeting}</h1>
-        <ItemList products={products} />
-        </>
-        
-    )
+  } if (category === 'ropa') {
+    q = query(productCollection, where('category', '==', 'ropa'));
+    console.log(category);
+  } if (category === 'juguetes') {
+    q = query(productCollection, where('category', '==', 'juguetes'));
+  } else{
+    q = collection(db, "productos");
   }
 
-  export default ItemListContainer;
+
+
+  useEffect(() => {
+
+
+    getDocs(q)
+      .then((result) => {
+        const listProducts = result.docs.map((item) => {
+          return {
+            ...item.data(),
+            id: item.id,
+          };
+        });
+        setProducts(listProducts);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+
+  }, [q]);
+
+  return (
+    <>
+      <h1>{category}</h1>
+      <ItemList products={products} />
+    </>
+
+  )
+}
+
+export default ItemListContainer;
