@@ -5,7 +5,8 @@ import './App.css'
 import ItemDetailContainer from './Components/ItemDetailContainer/ItemDetailContainer';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { CustomProvider } from './Components/Contex/CartContext';
-//import { Cart } from "./Components/Cart/Cart"; <Route path='/producto/:id' element={<ItemDetailContainer />} />
+import { Cart } from "./Components/Cart/Cart"; 
+import PagePagos from "./Components/PagePago/PagePago";
 
 function App() {
   return (
@@ -14,10 +15,11 @@ function App() {
         <div className='App'>
           <Navbar />
           <Routes>
-            <Route path='/' element={<ItemListContainer greeting={"Las Mejores Ofertas"} />} />
-            <Route path='/categoria/:category' element={<ItemListContainer greeting={"Las Mejores Ofertas"} />} />
-            
-            
+            <Route path='/' element={<ItemListContainer greeting={"Bienvenidos a la Mejor Tiena Para Bebés"} />} />
+            <Route path='/categoria/:category' element={<ItemListContainer greeting={"Bienvenidos a la Mejor Tiena Para Bebés"} />} />
+            <Route path='/producto/:id' element={<ItemDetailContainer />} />
+            <Route path="/cart" element={<Cart/>} />
+            <Route path="/pago" element={<PagePagos/>} />
             <Route path="*" element={<ItemListContainer />} />
           </Routes>
         </div>
@@ -28,4 +30,3 @@ function App() {
 
 export default App;
 
-//<Route path="/cart" element={<Cart/>} />

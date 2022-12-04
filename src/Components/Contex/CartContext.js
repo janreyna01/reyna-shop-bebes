@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useState, useEffect } from "react";
 
 export const Context = createContext();
 
@@ -6,6 +6,12 @@ export const CustomProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
   const [qty, setQty] = useState(0);
   const [total, setTotal] = useState(0);
+
+  useEffect(() => {
+    setQty(cart.reduce((total, item) => total + item.cantidad, 0))
+    setTotal(cart.reduce((total, item) => total + (item.cantidad * item.price), 0))
+  }, [])
+  
 
   const addItem = (item, cantidad) => {
     if (IsInCart(item.id)) {

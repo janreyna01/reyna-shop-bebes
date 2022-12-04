@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 
-function ItemCount({ stock, initial }) {
+function ItemCount({ stock, initial, onAdd }) {
     const [contador, setContador] = useState(initial)
 
 
@@ -23,7 +23,9 @@ function ItemCount({ stock, initial }) {
             <button onClick={decrement}>-</button>
             <h2>{contador}</h2>
             <button onClick={increment}>+</button>
-
+            <span>
+                {stock === 0 ? 'Sin Stock': <button onClick={()=>onAdd(contador)}>Agregar al Carrito</button>}
+            </span>
         </>
     )
 

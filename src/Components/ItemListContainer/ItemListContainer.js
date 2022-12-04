@@ -8,31 +8,19 @@ import { getDocs, collection, query, where } from 'firebase/firestore';
 function ItemListContainer({ greeting }) {
   const [products, setProducts] = useState([]);
 
-  const { category } = useParams();
-  //console.log(category);
-
-
-  const productCollection = collection(db, "productos");
-  // const q = query(productCollection, where('category', '==', 'accesorios'))
-  let q
-  if (category === 'accesorios') {
-    q = query(productCollection, where('category', '==', 'ropa'));
-    
-  } if (category === 'ropa') {
-    q = query(productCollection, where('category', '==', 'ropa'));
-    console.log(category);
-  } if (category === 'juguetes') {
-    q = query(productCollection, where('category', '==', 'juguetes'));
-  } else{
-    q = collection(db, "productos");
-  }
-
-
+  const { category }  = useParams();
+  
+  const q = category
+  ? query(collection(db, 'products'), where('category', '==', category))
+  : collection(db, 'products');
+  
+  
+ 
+const productCollection = collection(db, "productos");
 
   useEffect(() => {
-
-
-    getDocs(q)
+    
+    getDocs(productCollection)
       .then((result) => {
         const listProducts = result.docs.map((item) => {
           return {
@@ -46,11 +34,11 @@ function ItemListContainer({ greeting }) {
         console.log(error);
       })
 
-  }, [q]);
+  }, []);
 
   return (
     <>
-      <h1>{category}</h1>
+      <h1>{greeting}</h1>
       <ItemList products={products} />
     </>
 

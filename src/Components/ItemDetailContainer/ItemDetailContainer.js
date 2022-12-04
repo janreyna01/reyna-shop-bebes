@@ -8,7 +8,7 @@ const ItemDetailContainer = () => {
 
     const [products, setProducts] = useState([]);
     const { id } = useParams();
-console.log(id);
+
     useEffect(() => {
         const productCollection = collection(db, "productos");
         const refDoc = doc(productCollection, id);

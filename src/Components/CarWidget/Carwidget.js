@@ -4,10 +4,11 @@ import { orange } from "@mui/material/colors";
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 
 
+
 export const Carwidget = () => {
   const { qty } = useContext(Context);
-
   
+
   return (
     <>
       <p>{qty}</p>

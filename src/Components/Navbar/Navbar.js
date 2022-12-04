@@ -25,7 +25,10 @@ function Navbar() {
                     );
                 })}
             </div>
-            <Carwidget />
+            <Link to='/cart'>
+                <Carwidget />
+            </Link>
+
         </nav>
     )
 }
