@@ -1,10 +1,11 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import ItemCount from '../ItemCount/ItemCount';
 import { Context } from '../Contex/CartContext';
 
 
 const ItemDetail = (products) => {
+  const [isPressedButton, setIsPressedButton] = useState(false);
   const { cart, addItem, IsInCart } = useContext(Context);
 
 
@@ -17,6 +18,7 @@ const ItemDetail = (products) => {
   }
 
   const onAdd = (contador) => {
+    setIsPressedButton(true);
     addItem(products, contador);
   };
 
@@ -30,10 +32,14 @@ const ItemDetail = (products) => {
       <Link to="/categoria">
         <button>Seguir Comprando</button>
       </Link><br />
-      <ItemCount stock={stock} initial={1} onAdd={onAdd} />
-      <Link to="/cart">
-        <button>Finalizar Compra</button>
-      </Link>
+      {!isPressedButton ? (
+        <ItemCount stock={stock} initial={1} onAdd={onAdd} />
+      ) : (
+        <Link to="/cart">
+          <button>Finalizar Compra</button>
+        </Link>
+      )}
+      
 
     </>
   )
